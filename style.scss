@@ -1,0 +1,29 @@
+
+.header {
+    border-radius: 10px;
+    color: rgb(31, 77, 77);
+    background-color: lightcoral;
+    display: flex;
+    height:  150px;
+    justify-content: space-between;
+    align-items: flex-end;
+    
+    &__title {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 10px;
+        
+    }
+    &__nav {
+        margin-right: 10px;
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+        // align-items: flex-end;
+    }
+}
+
+li {
+    margin-right: 15px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+}
