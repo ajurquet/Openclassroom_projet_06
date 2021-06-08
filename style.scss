@@ -1,12 +1,20 @@
+$background-box-color: rgb(240, 128, 128);
+$text-color : rgb(31, 77, 77);
+
+.body {
+    display: flex;
+    justify-content: space-between;
+}
 
 .header {
     border-radius: 10px;
-    color: rgb(31, 77, 77);
-    background-color: lightcoral;
+    color: $text-color;
+    background-color: $background-box-color;
     display: flex;
     height:  150px;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 15px;
     
     &__title {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,4 +34,89 @@ li {
     margin-right: 15px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     
+}
+
+#bestMovieBlock {
+    background-color: $background-box-color;
+    color: $text-color;
+    height:  15%;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+    margin: auto;
+
+}
+#bestMovie {
+    display: flex;
+    
+    // &:nth-child(3) {
+    //     align-self: flex-end;
+    // }
+
+    &__datas {
+        display: flex;
+        flex-direction: column;
+
+        &__btn {
+            color: $text-color;
+        }
+    }
+}
+
+ .modal {  /* design de l'ombre derrière la modale */
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.modal_content { /* design de la modale */
+    overflow: auto;
+    max-width: calc(100vh - 20px);
+    max-height: calc(100vh - 20px);
+    width: 600px;
+    padding: 20px;
+    background-color: rgb(159, 136, 241);
+    border-radius: 5px;
+    position: relative;
+
+}
+
+a { /* design du bouton */
+    /* width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    text-decoration: none;
+    background-color: rgb(207, 24, 24);
+    padding: 15px;
+    border-radius: 5px;
+    color: black;
+}
+
+.modal_close { /* design du bouton de fermeture */
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: brown;
+    text-decoration: none;
+    background-color: rgb(180, 255, 95);
 }
