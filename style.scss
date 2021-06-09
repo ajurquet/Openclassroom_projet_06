@@ -6,7 +6,13 @@ $text-color : rgb(31, 77, 77);
     justify-content: space-between;
 }
 
-.header {
+.btn {
+    border-radius: 10px;
+    color: $text-color;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header{
     border-radius: 10px;
     color: $text-color;
     background-color: $background-box-color;
@@ -25,25 +31,23 @@ $text-color : rgb(31, 77, 77);
         margin-right: 10px;
         display: flex;
         justify-content: space-between;
-        list-style-type: none;
-        // align-items: flex-end;
+       
     }
 }
 
 li {
     margin-right: 15px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    list-style-type: none;  
 }
 
 #bestMovieBlock {
     background-color: $background-box-color;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    border-radius: 10px;
     color: $text-color;
     height:  15%;
     width: 50%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     text-align: center;
     align-items: center;
     padding: 5px;
@@ -52,71 +56,51 @@ li {
 }
 #bestMovie {
     display: flex;
+    justify-content: space-around;
     
-    // &:nth-child(3) {
-    //     align-self: flex-end;
-    // }
+}
 
-    &__datas {
-        display: flex;
-        flex-direction: column;
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
-        &__btn {
-            color: $text-color;
-        }
+    &__content {
+    background-color: $background-box-color;
+    color: $text-color;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%; /* Could be more or less, depending on screen size */
+    }
+    &__list {
+        list-style-type: none;
+        text-align: justify;
     }
 }
 
- .modal {  /* design de l'ombre derrière la modale */
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+
+/* The Close Button */
+.close {
+  color: $text-color;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-.modal:target {
-    visibility: visible;
-    opacity: 1;
-}
-
-
-
-.modal_content { /* design de la modale */
-    overflow: auto;
-    max-width: calc(100vh - 20px);
-    max-height: calc(100vh - 20px);
-    width: 600px;
-    padding: 20px;
-    background-color: rgb(159, 136, 241);
-    border-radius: 5px;
-    position: relative;
-
-}
-
-a { /* design du bouton */
-    /* width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
-    text-decoration: none;
-    background-color: rgb(207, 24, 24);
-    padding: 15px;
-    border-radius: 5px;
-    color: black;
-}
-
-.modal_close { /* design du bouton de fermeture */
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    color: brown;
-    text-decoration: none;
-    background-color: rgb(180, 255, 95);
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

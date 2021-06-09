@@ -3,6 +3,12 @@
   justify-content: space-between;
 }
 
+.btn {
+  border-radius: 10px;
+  color: #1f4d4d;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .header {
   border-radius: 10px;
   color: #1f4d4d;
@@ -23,22 +29,21 @@
   margin-right: 10px;
   display: flex;
   justify-content: space-between;
-  list-style-type: none;
 }
 
 li {
   margin-right: 15px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  list-style-type: none;
 }
 
 #bestMovieBlock {
   background-color: lightcoral;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 10px;
   color: #1f4d4d;
   height: 15%;
   width: 50%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   text-align: center;
   align-items: center;
   padding: 5px;
@@ -47,60 +52,61 @@ li {
 
 #bestMovie {
   display: flex;
+  justify-content: space-around;
 }
 
-#bestMovie__datas {
-  display: flex;
-  flex-direction: column;
-}
-
-#bestMovie__datas__btn {
-  color: #1f4d4d;
-}
-
+/* The Modal (background) */
 .modal {
   display: none;
+  /* Hidden by default */
   position: fixed;
-  padding-top: 50px;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  bottom: 0;
+  right: 0;
   left: 0;
   top: 0;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
   background-color: black;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
-.modal-content {
-  position: relative;
-  background-color: white;
+.modal__content {
+  background-color: lightcoral;
+  color: #1f4d4d;
+  margin: 15% auto;
+  /* 15% from the top and centered */
   padding: 20px;
-  margin: auto;
-  width: 75%;
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
+  border-radius: 10px;
+  width: 50%;
+  /* Could be more or less, depending on screen size */
 }
 
-.close-btn {
+.modal__list {
+  list-style-type: none;
+  text-align: justify;
+}
+
+/* The Close Button */
+.close {
+  color: #1f4d4d;
   float: right;
-  color: lightgray;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
 }
 
-.close-btn:hover {
-  color: darkgray;
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
