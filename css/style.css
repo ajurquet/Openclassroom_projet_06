@@ -43,7 +43,7 @@ li {
   border-radius: 10px;
   color: #1f4d4d;
   height: 15%;
-  width: 50%;
+  width: 500px;
   text-align: center;
   align-items: center;
   padding: 5px;
@@ -51,6 +51,11 @@ li {
 }
 
 #bestMovie {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bestMovies {
   display: flex;
   justify-content: space-around;
 }
