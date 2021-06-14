@@ -6,8 +6,6 @@ let movie_datas_html = [];
 let movies_instances = [];
 
 
-
-
 class Movie {
   constructor(id, img_url, title, genres, year, imdb_score, directors, actors) {
     this.id = id;
@@ -19,118 +17,93 @@ class Movie {
     this.directors = directors;
     this.actors = actors;
   }
-}
 
-
-
-
-// Création de la fenêtre "meilleur film"
-function showPreviewBestMovie(endUrl) {
-fetch(mainEntryUrl + endUrl)
-    .then(function(res) {
-        if (res.ok) {
-            return res.json();
-        }
-    })
-    .then(function(data) {
-        movie_image_url = data.results[0].image_url;
-        movie_datas.push(data.results[0].title, data.results[0].genres,data.results[0].year,
-             data.results[0].imdb_score, data.results[0].directors, data.results[0].actors);
-
-        let best_movie_image_element = document.getElementById("bestMovie__image");
-        best_movie_image_element.innerHTML = "<p><img src=" +  movie_image_url + "</p>";
-
-        let best_movie_datas_element = document.getElementById("bestMovie__datas");
-        best_movie_datas_element.innerHTML = "<p><strong>" + movie_datas[0] + "</strong>";
-
-        let best_movie_modal_content = document.getElementsByClassName("modal__img")[0];
-        best_movie_modal_content.innerHTML = "<p><img src=" +  movie_image_url + "</p>";
-
-        let best_movie_modal_list = document.getElementsByClassName("modal__contents")[0];
-        let movie_content_ul_el = document.createElement("ul");
-        
-        best_movie_modal_list.appendChild(movie_content_ul_el);
-        
-        for (data of movie_datas) {
-            let li_element = document.createElement("li");
-            let li_content = document.createTextNode(data);
-            li_element.appendChild(li_content)
-            movie_content_ul_el.appendChild(li_element)
-        }
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
-}
-
-
-
-
-function open_modal_window (movie_object) {
-  // Script fenêtre modale
-  let modal = document.getElementById("myModal");
-  let span = document.getElementsByClassName("close")[0];
-
-  // Ouvre la fenêtre
+  createModal() {
+    let modal = document.getElementById("myModal");
+    let span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
+
+    //Ouvre la fenêtre modale et copie les informations du film à l'intérieur.
     let modal_img_el = document.getElementsByClassName("modal__img")[0];
-    modal_img_el = document.innerHTML = "<p><img src=" +  movie_object.img_url + "</p>";
+    modal_img_el.innerHTML = "<p><img src=" +  this.img_url + "</p>";
     let modal_content_el = document.getElementsByClassName("modal__contents");
+
     let title_li = document.createElement("li");
-    title_li.innerHTML = "Titre : " + movie_object.title;
-    console.log(title_li);
-    console.log(modal_content_el);
+    title_li.innerHTML = "Titre : " + this.title;
     modal_content_el[0].appendChild(title_li);
 
-    console.log(modal_content_el);
+    let genres_li = document.createElement("li");
+    genres_li.innerHTML = "Genre(s) : " + this.genres;
+    modal_content_el[0].appendChild(genres_li);
+
+    let year_li = document.createElement("li");
+    year_li.innerHTML = "Année de production : " + this.year;
+    modal_content_el[0].appendChild(year_li);
+
+    let imdb_score_li = document.createElement("li");
+    imdb_score_li.innerHTML = "Score IMBD : " + this.imdb_score;
+    modal_content_el[0].appendChild(imdb_score_li);
+
+    let directors_li = document.createElement("li");
+    directors_li.innerHTML = "Réalisateur(s) : " + this.directors;
+    modal_content_el[0].appendChild(directors_li);
+
+    let actors_li = document.createElement("li");
+    actors_li.innerHTML = "Acteurs : " + this.actors;
+    modal_content_el[0].appendChild(actors_li);
+    
+
   // Ferme la fenêtre quand l'utilisateur clique sur "X", et efface les données
-  span.onclick = function() {
+    span.onclick = function() {
     modal.style.display = "none";
     let modal_img = document.getElementsByClassName("modal__img")[0];
     modal_img.innerHTML = "";
     let modal_data = document.getElementsByClassName("modal__contents")[0];
     modal_data.innerHTML = "";
   }
-  // Ferme la fenêtre quand l'utilisateur clique en dehors de la fenêtre
+  // Ferme la fenêtre quand l'utilisateur clique en dehors de la fenêtre, et efface les données 
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
-    }
+      let modal_img = document.getElementsByClassName("modal__img")[0];
+      modal_img.innerHTML = "";
+      let modal_data = document.getElementsByClassName("modal__contents")[0];
+      modal_data.innerHTML = "";  
+  }
+}
   }
 }
 
+// Création de la fenêtre "meilleur film"
+function showPreviewBestMovie(endUrl) {
+  fetch(mainEntryUrl + endUrl)
+      .then(function(res) {
+          if (res.ok) {
+              return res.json();
+          }
+      })
+      .then(function(data) {
+        let best_movie = new Movie(data.results[0].id, data.results[0].image_url,data.results[0].title, data.results[0].genres, data.results[0].year,
+          data.results[0].imdb_score, data.results[0].directors, data.results[0].actors);
+      
+        let best_movie_img = document.getElementById("bestMovie__image");
+        best_movie_img.innerHTML = "<p><img src=" + best_movie.img_url + "></p>";
 
+        let best_movie_contents = document.getElementById("bestMovie__contents");
+        best_movie_contents.innerText = best_movie.title 
 
+        btn = document.getElementsByClassName("btn__openModal");
+        btn[0].addEventListener("click", function () {
+        best_movie.createModal()
+        })
+      
+      .catch(function(error) {
+          console.log(error);
+      });
 
-
-
-// Script fenêtre modale
-let modal = document.getElementById("myModal");
-let btn = document.getElementsByClassName("btn__openModal")[0];
-let span = document.getElementsByClassName("close")[0];
-// Ouvre la fenêtre quand l'utilisateur clique sur le bouton
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-// Ferme la fenêtre quand l'utilisateur clique sur "X"
-span.onclick = function() {
-  modal.style.display = "none";
-  let modal_img = document.getElementsByClassName("modal__img")[0];
-  modal_img.innerHTML = "";
-  let modal_data = document.getElementsByClassName("modal__list")[0];
-  modal_data.innerHTML = "";
-}
-// Ferme la fenêtre quand l'utilisateur clique en dehors de la fenêtre
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+    })
   }
-}
-
-
-
-
-
+  
 
 // Création du caroussel
 function showPreviewInCaroussel(endUrl, indice, category) {
@@ -152,21 +125,8 @@ fetch(mainEntryUrl + endUrl)
     movie_cat.appendChild(movie_image_element);
 
     movie_cat.addEventListener("click", function() {
-      // open_modal_window(movie)
-      // let movie_modal_contents = document.getElementsByClassName("modal__contents")[0];
-      // let movie_content_ul_el = document.createElement("ul");
-      
-      // movie_modal_contents.appendChild(movie_content_ul_el);
-
-      
-      // for (data of movie_datas) {
-      //     let li_element = document.createElement("li");
-      //     let li_content = document.createTextNode(data);
-      //     li_element.appendChild(li_content)
-      //     movie_content_ul_el.appendChild(li_element)
-      // }
-      //   modal.style.display = "block";
-
+      movie.createModal()
+     
     })        
     })
 
@@ -174,11 +134,6 @@ fetch(mainEntryUrl + endUrl)
         console.log(error);
     });
   }
-
-
-
-
-
 
 
 // Fenêtre meilleur film
@@ -192,7 +147,26 @@ for (let movie = 0; movie < 2; movie++) {
   showPreviewInCaroussel("?sort_by=-imdb_score&page=2", movie, "bestMovies")
 }
 
+// 2d caroussel (meilleur films d'action)
+// for (let movie = 0; movie < 5; movie++) {
+//   showPreviewInCaroussel("?genre_contains=drama", movie, "bestMovies__action")
+// }
+// for (let movie = 0; movie < 2; movie++) {
+//   showPreviewInCaroussel("??genre_contains=drama&page=2", movie, "bestMovies")
+// }
 
+// // 3eme caroussel (meilleur films thriller)
+// for (let movie = 0; movie < 5; movie++) {
+//   showPreviewInCaroussel("?genre_contains=thriller", movie, "bestMovies__thriller")
+// }
+// for (let movie = 0; movie < 2; movie++) {
+//   showPreviewInCaroussel("?genre_contains=thriller&page=2", movie, "bestMovies")
+// }
 
-  
-  
+// // 4eme caroussel (meilleur films d'horreur)
+// for (let movie = 0; movie < 5; movie++) {
+//   showPreviewInCaroussel("?genre_contains=horror", movie, "bestMovies__Horror")
+// }
+// for (let movie = 0; movie < 2; movie++) {
+//   showPreviewInCaroussel("??genre_contains=horror&page=2", movie, "bestMovies")
+// }
