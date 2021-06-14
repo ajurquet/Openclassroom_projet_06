@@ -1,6 +1,7 @@
 $background-box-color: rgb(240, 128, 128);
 $text-color : rgb(31, 77, 77);
 
+
 .body {
     display: flex;
     justify-content: space-between;
@@ -65,8 +66,21 @@ li {
     justify-content: space-around;
 
     &__action {
-        
+        display: flex;
+        justify-content: space-around;
     }
+
+    &__thriller {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__horror {
+        display: flex;
+        justify-content: space-around;
+    }
+
+
 }
 
 
@@ -84,6 +98,10 @@ li {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+    &__image {
+        align-items: center;
+    }
 
     &__content {
     background-color: $background-box-color;
