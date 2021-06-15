@@ -6,18 +6,18 @@ let movies_instances = [];
 
 
 
-class Movie {
-  constructor(id, img_url, title, genres, year, imdb_score, directors, actors) {
-    this.id = id;
-    this.img_url = img_url;
-    this.title = title;
-    this.genres = genres;
-    this.year = year;
-    this.imdb_score = imdb_score;
-    this.directors = directors;
-    this.actors = actors;
-  }
-}
+// class Movie {
+//   constructor(id, img_url, title, genres, year, imdb_score, directors, actors) {
+//     this.id = id;
+//     this.img_url = img_url;
+//     this.title = title;
+//     this.genres = genres;
+//     this.year = year;
+//     this.imdb_score = imdb_score;
+//     this.directors = directors;
+//     this.actors = actors;
+//   }
+// }
 
 
 
@@ -78,11 +78,9 @@ function createModal(movieId) {
       let description_li = document.createElement("li");
       description_li.innerHTML = "<em>Résumé : </em>" + data.description;
       modal_content_el[0].appendChild(description_li);
-
-      // durée, pays d'origine, résultat box offfice, résumé du film
     
 
-    // Ferme la fenêtre quand l'utilisateur clique sur "X", et efface les données
+    // Ferme la fenêtre quand l'utilisateur clique sur "X", et efface les données.
       span.onclick = function() {
       modal.style.display = "none";
       let modal_img = document.getElementsByClassName("modal__img")[0];
@@ -90,7 +88,7 @@ function createModal(movieId) {
       let modal_data = document.getElementsByClassName("modal__contents")[0];
       modal_data.innerHTML = "";
     }
-    // Ferme la fenêtre quand l'utilisateur clique en dehors de la fenêtre, et efface les données 
+    // Ferme la fenêtre quand l'utilisateur clique en dehors de la fenêtre, et efface les données.
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
@@ -98,7 +96,7 @@ function createModal(movieId) {
         modal_img.innerHTML = "";
         let modal_data = document.getElementsByClassName("modal__contents")[0];
         modal_data.innerHTML = "";  
-    }
+      }
   }
     .catch(function(error) {
       console.error('Error:', error);
@@ -169,22 +167,16 @@ fetch(mainEntryUrl + endUrl)
       console.log(movie_image_element.dataset.id);
       createModal(movie_image_element.dataset.id)
     })
-      
-    })
-
+  })
     .catch(function(error) {
         console.log(error);
     });
   }
 
 
-
-
   function main() {
 
-    // Fenêtre meilleur film
-  let bestMovieUrl = "";
-
+    // Bloc meilleur film.
   fetch (mainEntryUrl + "?sort_by=-imdb_score")
     .then(function(res) {
       if (res.ok) {
@@ -196,7 +188,6 @@ fetch(mainEntryUrl + endUrl)
       showPreviewBestMovie(bestMovieUrl);
     });
 
-
   // 1er caroussel (meilleur films)
   for (let movie = 0; movie < 5; movie++) {
     showPreviewInCaroussel("?sort_by=-imdb_score", movie, "bestMovies")
@@ -206,7 +197,6 @@ fetch(mainEntryUrl + endUrl)
     
   }
 
-  
   // 2d caroussel (meilleur films d'action)
   for (let movie = 0; movie < 5; movie++) {
     showPreviewInCaroussel("?genre_contains=drama", movie, "bestMovies__action")
@@ -231,8 +221,6 @@ fetch(mainEntryUrl + endUrl)
     showPreviewInCaroussel("??genre_contains=horror&page=2", movie, "bestMovies__horror")
   }
 
-  
-
   let imagePreviews = document.getElementsByClassName("imagePreview");
   console.log(imagePreviews);
   for (let img of imagePreviews) {
@@ -241,14 +229,6 @@ fetch(mainEntryUrl + endUrl)
       createModal(img.dataset.id)
     })
   } 
-
-
-
-
-
-
 }
 
 main()
-
-
