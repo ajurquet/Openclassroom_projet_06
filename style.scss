@@ -64,7 +64,17 @@ li {
     margin: auto;
 
 }
+// .caroussel {
+//     display: flex;
+//     justify-content: space-around;
+//     flex-direction: row;
+// }
 
+// #caroussels {
+//     display: flex;
+//     flex-wrap: wrap;
+
+// }
 
 .bestMovies {
     display: flex;
@@ -173,3 +183,8 @@ li {
         }
 }
 
+.imagePreview {
+    &:hover {
+        transform:scale(1.2);
+    }
+}

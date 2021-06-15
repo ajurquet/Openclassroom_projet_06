@@ -159,4 +159,8 @@ li {
 .arrow:hover {
   box-shadow: -2px, 2px, 0 red;
 }
+
+.imagePreview:hover {
+  transform: scale(1.2);
+}
 /*# sourceMappingURL=style.css.map */
