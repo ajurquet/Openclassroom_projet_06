@@ -5,7 +5,6 @@ let movie_datas_html = [];
 let movies_instances = [];
 
 
-
 // class Movie {
 //   constructor(id, img_url, title, genres, year, imdb_score, directors, actors) {
 //     this.id = id;
@@ -18,7 +17,6 @@ let movies_instances = [];
 //     this.actors = actors;
 //   }
 // }
-
 
 
 function createModal(movieId) {
@@ -105,9 +103,6 @@ function createModal(movieId) {
 })};
 
 
-
-
-
 // Création de la fenêtre "meilleur film"
 async function showPreviewBestMovie(url) {
   fetch(url)
@@ -117,7 +112,6 @@ async function showPreviewBestMovie(url) {
           }
       })
       .then(await function(data) {
-      console.log(data);
       let best_movie_img = document.getElementById("bestMovie__image");
 
       best_movie_img.innerHTML = "<p><img src=" +  data.image_url + " class=imagePreview"  + " </p>";
@@ -125,7 +119,7 @@ async function showPreviewBestMovie(url) {
 
 
       let best_movie_contents = document.getElementById("bestMovie__contents");
-      let best_movie_title = document.createElement("p");
+      let best_movie_title = document.createElement("h1");
       let best_movie_description = document.createElement("p");
 
       best_movie_title.innerText = data.title;
@@ -147,8 +141,8 @@ async function showPreviewBestMovie(url) {
   };
   
 
-// Création du caroussel
-async function showPreviewInCaroussel(endUrl, indice, category) {
+// Création d'une image preview pour le caroussel.
+async function showPreviewInCaroussel(endUrl, indice, sectionName) {
 fetch(mainEntryUrl + endUrl)
   .then(await function(res) {
     if (res.ok) {
@@ -156,15 +150,15 @@ fetch(mainEntryUrl + endUrl)
     }
   })
   .then(await function(data) {   
-    let movie_cat = document.getElementsByClassName(category)[0];    
-    let movie_image_element = document.createElement("p");
+    // let movie_cat = document.getElementsByClassName(category)[0];    
+    let caroussel_section = document.getElementsByClassName(sectionName)[0];
+    let movie_image_element = document.createElement("div");
     
-    movie_image_element.innerHTML = "<p><img src=" +  data.results[indice].image_url + " class=imagePreview"  + " </p>";
+    movie_image_element.innerHTML = "<p><img src=" +  data.results[indice].image_url + " class=imagePreview" + " alt=" + data.results[indice].title + "</p>";
     movie_image_element.setAttribute("data-id", data.results[indice].id)
-    movie_cat.appendChild(movie_image_element);
+    caroussel_section.appendChild(movie_image_element);
     
     movie_image_element.addEventListener("click", function() {
-      console.log(movie_image_element.dataset.id);
       createModal(movie_image_element.dataset.id)
     })
   })
@@ -173,6 +167,28 @@ fetch(mainEntryUrl + endUrl)
     });
   }
 
+  // Créer une section d'images pour le caroussel.
+  function createImagesSection(category, sectionPrimary, sectionSecondary) {
+    let movie_cat = document.getElementsByClassName(category)[0];
+
+    if (movie_cat.hasChildNodes()) {
+
+    }
+    else {
+      let caroussel = document.createElement("div");
+      caroussel.setAttribute("class", "caroussel");
+      movie_cat.appendChild(caroussel);
+    }
+   
+    let imagesSection = document.createElement("section");
+    imagesSection.setAttribute("class", sectionPrimary);
+    movie_cat.appendChild(imagesSection);
+
+    let leftArrow = document.createElement("a");
+    leftArrow.setAttribute("href", "#" + sectionSecondary);
+    leftArrow.setAttribute("class", "arrow__left");
+    imagesSection.insertAdjacentElement("afterbegin", leftArrow)
+  }
 
   function main() {
 
@@ -189,11 +205,14 @@ fetch(mainEntryUrl + endUrl)
     });
 
   // 1er caroussel (meilleur films)
+  createImagesSection("bestMovies", "bestMovies__section1", "bestMovies__section2");
   for (let movie = 0; movie < 5; movie++) {
-    showPreviewInCaroussel("?sort_by=-imdb_score", movie, "bestMovies")
+    
+    showPreviewInCaroussel("?sort_by=-imdb_score", movie, "bestMovies__section1")
   }
+  createImagesSection("bestMovies", "bestMovies__section2", "bestMovies__section1");
   for (let movie = 0; movie < 2; movie++) {
-    showPreviewInCaroussel("?sort_by=-imdb_score&page=2", movie, "bestMovies")
+    showPreviewInCaroussel("?sort_by=-imdb_score&page=2", movie, "bestMovies__section2")
     
   }
 

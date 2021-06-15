@@ -1,12 +1,20 @@
-.body {
-  display: flex;
-  justify-content: space-between;
+body {
+  background: rgba(240, 128, 128, 0.7);
 }
 
 .btn {
   border-radius: 10px;
   color: #1f4d4d;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f4d4d;
+}
+
+em {
+  font-weight: bold;
 }
 
 .header {
@@ -50,14 +58,19 @@ li {
   margin: auto;
 }
 
-#bestMovie {
+.bestMovies {
   display: flex;
   justify-content: space-around;
 }
 
-.bestMovies {
+.bestMovies__section1 {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.bestMovies__section2 {
+  display: flex;
+  justify-content: space-between;
 }
 
 .bestMovies__action {
@@ -75,28 +88,19 @@ li {
   justify-content: space-around;
 }
 
-/* The Modal (background) */
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   bottom: 0;
   right: 0;
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
 
 .modal__image {
@@ -107,11 +111,9 @@ li {
   background-color: lightcoral;
   color: #1f4d4d;
   margin: 15% auto;
-  /* 15% from the top and centered */
   padding: 20px;
   border-radius: 10px;
   width: 50%;
-  /* Could be more or less, depending on screen size */
 }
 
 .modal__list {
@@ -119,7 +121,6 @@ li {
   text-align: justify;
 }
 
-/* The Close Button */
 .close {
   color: #1f4d4d;
   float: right;
@@ -132,5 +133,30 @@ li {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.arrow {
+  width: 100px;
+  height: 100px;
+  transition: .5s;
+  float: left;
+  box-shadow: -2px 2px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.arrow__left {
+  transform: rotate(45deg);
+}
+
+.arrow:hover {
+  box-shadow: -2px, 2px, 0 red;
+}
+
+.arrow__right {
+  transform: rotate(225deg);
+}
+
+.arrow:hover {
+  box-shadow: -2px, 2px, 0 red;
 }
 /*# sourceMappingURL=style.css.map */
