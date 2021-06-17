@@ -58,11 +58,6 @@ li {
   margin: auto;
 }
 
-.bestMovies {
-  display: flex;
-  justify-content: space-around;
-}
-
 .modal {
   display: none;
   position: fixed;
