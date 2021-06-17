@@ -79,36 +79,38 @@ li {
 .bestMovies {
     display: flex;
     justify-content: space-around;
-
-    &__section1 {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__section2 {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__action {
-        display: flex;
-        justify-content: space-around;
-    }
-
-
-
-    &__thriller {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    &__horror {
-        display: flex;
-        justify-content: space-around;
-    }
-
-
 }
+
+    // &__section1 {
+    //     display: flex;
+    //     justify-content: space-around;
+    // }
+
+    // &__section2 {
+    //     display: flex;
+    //     justify-content: space-between;
+//     }
+// }
+
+//     &__action {
+//         display: flex;
+//         justify-content: space-around;
+//     }
+
+
+
+//     &__thriller {
+//         display: flex;
+//         justify-content: space-around;
+//     }
+
+//     &__horror {
+//         display: flex;
+//         justify-content: space-around;
+//     }
+
+
+// }
 
 
 
@@ -144,8 +146,6 @@ li {
     }
 }
 
-
-
 .close {
   color: $text-color;
   float: right;
@@ -160,31 +160,20 @@ li {
   cursor: pointer;
 }
 
-.arrow {
-    width: 100px;
-    height: 100px;
-    transition: .5s;
-    float: left;
-    box-shadow : -2px 2px 0 rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    
-    &__left {
-        transform: rotate(45deg);
-    }
-        &:hover {
-            box-shadow: -2px, 2px, 0 rgb(255, 0, 0);
-        }
-    
-    &__right {
-        transform: rotate(225deg);
-        }
-        &:hover {
-            box-shadow: -2px, 2px, 0 rgb(255, 0, 0);
-        }
-}
 
-.imagePreview {
+.imgPreview {
+    transition: transform 0.2s;
     &:hover {
         transform:scale(1.2);
     }
+}
+
+#bestMovies__section1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+#bestMovies__section2 {
+    display: flex;
+    justify-content: space-around;
 }

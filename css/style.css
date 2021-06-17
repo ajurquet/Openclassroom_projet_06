@@ -63,31 +63,6 @@ li {
   justify-content: space-around;
 }
 
-.bestMovies__section1 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.bestMovies__section2 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.bestMovies__action {
-  display: flex;
-  justify-content: space-around;
-}
-
-.bestMovies__thriller {
-  display: flex;
-  justify-content: space-around;
-}
-
-.bestMovies__horror {
-  display: flex;
-  justify-content: space-around;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -135,32 +110,21 @@ li {
   cursor: pointer;
 }
 
-.arrow {
-  width: 100px;
-  height: 100px;
-  transition: .5s;
-  float: left;
-  box-shadow: -2px 2px 0 rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+.imgPreview {
+  transition: transform 0.2s;
 }
 
-.arrow__left {
-  transform: rotate(45deg);
-}
-
-.arrow:hover {
-  box-shadow: -2px, 2px, 0 red;
-}
-
-.arrow__right {
-  transform: rotate(225deg);
-}
-
-.arrow:hover {
-  box-shadow: -2px, 2px, 0 red;
-}
-
-.imagePreview:hover {
+.imgPreview:hover {
   transform: scale(1.2);
+}
+
+#bestMovies__section1 {
+  display: flex;
+  justify-content: space-around;
+}
+
+#bestMovies__section2 {
+  display: flex;
+  justify-content: space-around;
 }
 /*# sourceMappingURL=style.css.map */
