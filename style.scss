@@ -157,12 +157,25 @@ li {
     }
 }
 
-#bestMovies__section1 {
-    display: flex;
-    justify-content: space-around;
-}
+// #bestMovies__section1 {
+//     display: flex;
+//     justify-content: space-around;
+// }
 
-#bestMovies__section2 {
-    display: flex;
-    justify-content: space-around;
+// #bestMovies__section2 {
+//     display: flex;
+//     justify-content: space-around;
+// }
+
+/**
+Caroussel
+*/
+
+.caroussel{
+
+    &__test {
+        display: flex;
+       
+        
+    }
 }

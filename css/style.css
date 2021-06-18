@@ -113,13 +113,10 @@ li {
   transform: scale(1.2);
 }
 
-#bestMovies__section1 {
+/**
+Caroussel
+*/
+.caroussel__test {
   display: flex;
-  justify-content: space-around;
-}
-
-#bestMovies__section2 {
-  display: flex;
-  justify-content: space-around;
 }
 /*# sourceMappingURL=style.css.map */

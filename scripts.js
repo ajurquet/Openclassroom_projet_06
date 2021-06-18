@@ -128,7 +128,7 @@ function showPreviewBestMovie(url) {
   
 
 // Création d'une image preview pour le caroussel.
-function showPreview(endUrl, indice, sectionName) {
+function showPreview(endUrl, indice, containerId) {
 fetch(mainEntryUrl + endUrl)
   .then(function(res) {
     if (res.ok) {
@@ -137,13 +137,13 @@ fetch(mainEntryUrl + endUrl)
   })
   .then(function(data) {   
     // let movie_cat = document.getElementsByClassName(category)[0];    
-    let caroussel_section = document.getElementById(sectionName);
+    let caroussel__container = document.getElementById(containerId);
     let movie_image_element = document.createElement("div");
     
-    movie_image_element.innerHTML = "<p><img src=" +  data.results[indice].image_url + " class=imagePreview" + "</p>";
+    movie_image_element.innerHTML = "<p><img src=" +  data.results[indice].image_url + "</p>";
     movie_image_element.setAttribute("data-id", data.results[indice].id);
     movie_image_element.setAttribute("class", "imgPreview");
-    caroussel_section.appendChild(movie_image_element);
+    caroussel__container.appendChild(movie_image_element);
     
     movie_image_element.addEventListener("click", function() {
       createModal(movie_image_element.dataset.id)
@@ -155,73 +155,116 @@ fetch(mainEntryUrl + endUrl)
   }
 
 
-async function createCarousselSection(endUrl1, endUrl2, sectionPrimary, sectionSecondary) {
+function createCarousselSection(endUrl1, endUrl2, containerId) {
   
     // Création des sections d'images
-    let section1 = document.getElementById(sectionPrimary);
-    let section2 = document.getElementById(sectionSecondary);
-
-    let leftArrow1 = document.createElement("div");
-    leftArrow1.setAttribute("class", "arrow__Left");
-    leftArrow1.innerHTML = "<a href=#" + sectionSecondary + ">" + "<" + "</a>";
-
-    let rightArrow1 = document.createElement("div");
-    rightArrow1.setAttribute("class", "arrow__Right");
-    rightArrow1.innerHTML = "<a href=#" + sectionSecondary + ">" + ">" + "</a>";
-
-
-    section1.appendChild(leftArrow1);
-    for (let movie = 0; movie < 4; movie++) {
-      showPreview(endUrl1, movie, sectionPrimary)
+    
+    for (let movie = 0; movie < 5; movie++) {
+      showPreview(endUrl1, movie, containerId)
     }
-    section1.appendChild(rightArrow1);
-
-
-    let leftArrow2 = document.createElement("div");
-    leftArrow2.setAttribute("class", "arrow__Left");
-    leftArrow2.innerHTML = "<a href=#" + sectionPrimary + ">" + "<" + "</a>";
-
-    let rightArrow2 = document.createElement("div");
-    rightArrow2.setAttribute("class", "arrow__Right");
-    rightArrow2.innerHTML = "<a href=#" + sectionPrimary + ">" + ">" + "</a>";
-
-
-    section2.appendChild(leftArrow2);
-    for (let movie = 4; movie < 5; movie++) {
-      showPreview(endUrl1, movie, sectionSecondary)
-    }
-
+  
     for (let movie = 0; movie < 2; movie++) {
-      showPreview(endUrl2, movie, sectionSecondary)
+      showPreview(endUrl2, movie, containerId)
     }
-    section2.appendChild(rightArrow2)
 
 }
 
 
-  // // Créer une section d'images pour le caroussel.
-  // function createCarousselSection(category, endUrl1, endUrl2, sectionPrimary, sectionSecondary) {
-  //   let movie_cat = document.getElementsByClassName(category)[0];
 
-  //   if (movie_cat.hasChildNodes()) {
 
-  //   }
-  //   else {
-  //     let caroussel = document.createElement("div");
-  //     caroussel.setAttribute("class", "caroussel");
-  //     movie_cat.appendChild(caroussel);
-  //   }
-   
-  //   let imagesSection = document.createElement("section");
-  //   imagesSection.setAttribute("class", sectionPrimary);
-  //   movie_cat.appendChild(imagesSection);
+// function createCarousselSection(endUrl1, endUrl2, sectionPrimary, sectionSecondary) {
+  
+//   // Création des sections d'images
+//   let section1 = document.getElementById(sectionPrimary);
+//   let section2 = document.getElementById(sectionSecondary);
 
-  //   let leftArrow = document.createElement("a");
-  //   leftArrow.setAttribute("href", "#" + sectionSecondary);
-  //   leftArrow.setAttribute("class", "arrow__left");
-  //   imagesSection.insertAdjacentElement("afterbegin", leftArrow)
-  // }
+//   let leftArrow1 = document.createElement("div");
+//   leftArrow1.setAttribute("class", "arrow__Left");
+//   leftArrow1.innerHTML = "<a href=#" + sectionSecondary + ">" + "<" + "</a>";
 
+//   let rightArrow1 = document.createElement("div");
+//   rightArrow1.setAttribute("class", "arrow__Right");
+//   rightArrow1.innerHTML = "<a href=#" + sectionSecondary + ">" + ">" + "</a>";
+
+
+//   section1.appendChild(leftArrow1);
+//   for (let movie = 0; movie < 4; movie++) {
+//     showPreview(endUrl1, movie, sectionPrimary)
+//   }
+//   section1.appendChild(rightArrow1);
+
+
+//   let leftArrow2 = document.createElement("div");
+//   leftArrow2.setAttribute("class", "arrow__Left");
+//   leftArrow2.innerHTML = "<a href=#" + sectionPrimary + ">" + "<" + "</a>";
+
+//   let rightArrow2 = document.createElement("div");
+//   rightArrow2.setAttribute("class", "arrow__Right");
+//   rightArrow2.innerHTML = "<a href=#" + sectionPrimary + ">" + ">" + "</a>";
+
+
+//   section2.appendChild(leftArrow2);
+//   for (let movie = 4; movie < 5; movie++) {
+//     showPreview(endUrl1, movie, sectionSecondary)
+//   }
+
+//   for (let movie = 0; movie < 2; movie++) {
+//     showPreview(endUrl2, movie, sectionSecondary)
+//   }
+//   section2.appendChild(rightArrow2)
+
+// }
+
+
+
+
+
+class Caroussel {
+
+  /**
+   * 
+   * @param {*} element 
+   * @param {*} options 
+   * @param {Object} options.slidesToScroll: Nombre d'élements à faire défiler 
+   * @param {Object} options.slidesVisible: Nombre d'élements visible
+   * @param {*} options 
+   */
+
+  constructor (element, options = {}) {
+    this.element = element
+    this.options = Object.assign({}, {  //aller voir la doc sur Object.assign
+      slidesToScroll : 1,
+      slidesVisible : 1
+    }, options)
+
+    this.children = [].slice.call(element.children) //aller voir la doc sur slice et call
+    let root = this.createDivWithClass("caroussel")
+    let container = this.createDivWithClass("caroussel__container") // enlever caroussel__container -- faire une boucle pour créer la preview ici
+    root.appendChild(container)
+    this.element.appendChild(root)
+    this.children.forEach(function (child) {
+      container.appendChild(child)
+    })
+
+    // this.children.forEach((child) => { // aller voir la doc de forEach
+    //   let item = this.createDivWithClass("imgPreview") //class imgPreview
+    //   item.appendChild(child)
+    //   container.appendChild(item)
+    // })
+
+  }
+
+  /**
+   * 
+   * @param {string} className
+   * @returns {HTMLElement}
+   */
+  createDivWithClass (className) {
+    let div = document.createElement("div")
+    div.setAttribute("class", className)
+    return div
+  }
+}
 
 
   function main() {
@@ -238,9 +281,20 @@ async function createCarousselSection(endUrl1, endUrl2, sectionPrimary, sectionS
       showPreviewBestMovie(bestMovieUrl);
     });
 
-  // 1er caroussel (meilleur films)
-  createCarousselSection("?sort_by=-imdb_score", "?sort_by=-imdb_score&page=2", "bestMovies__section1", "bestMovies__section2" )
 
+    
+
+    new Caroussel(document.querySelector("#caroussel__test"), {
+      slidesToScroll : 3,
+      slidesVisible : 3
+    
+    })
+
+  // 1er caroussel (meilleur films)
+  createCarousselSection("?sort_by=-imdb_score", "?sort_by=-imdb_score&page=2", "caroussel__test")
+
+ 
+  }
 
 
 
@@ -280,14 +334,29 @@ async function createCarousselSection(endUrl1, endUrl2, sectionPrimary, sectionS
   //   showPreviewInCaroussel("??genre_contains=horror&page=2", movie, "bestMovies__horror")
   // }
 
-  let imagePreviews = document.getElementsByClassName("imagePreview");
-  console.log(imagePreviews);
-  for (let img of imagePreviews) {
-    console.log(img);
-    img.addEventListener("click", function() {
-      createModal(img.dataset.id)
-    })
-  } 
-}
+//   let imagePreviews = document.getElementsByClassName("imgPreview");
+//   for (let img of imagePreviews) {
+//     console.log(img);
+//     img.addEventListener("click", function() {
+//       createModal(img.dataset.id)
+//     })
+//   } 
+// }
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {  //aller voir la doc sur DOMCcontentLoaded
+//   new Caroussel(document.querySelector("#caroussel__test"), {
+//     slidesToScroll : 3,
+//     slidesVisible : 3
+  
+//   })
+  
+// })
+
+
+
 
 main()
