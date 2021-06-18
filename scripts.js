@@ -117,7 +117,6 @@ async function showPreviewBestMovie(url) {
       best_movie_img.innerHTML = "<p><img src=" +  data.image_url + " class=imagePreview"  + " </p>";
       best_movie_img.setAttribute("data-id", data.id);
 
-
       let best_movie_contents = document.getElementById("bestMovie__contents");
       let best_movie_title = document.createElement("h1");
       let best_movie_description = document.createElement("p");
