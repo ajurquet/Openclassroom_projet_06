@@ -137,12 +137,13 @@ fetch(mainEntryUrl + endUrl)
   })
   .then(function(data) {   
     // let movie_cat = document.getElementsByClassName(category)[0];    
-    let caroussel__container = document.getElementById(containerId);
-    let movie_image_element = document.createElement("div");
+    let caroussel__container = document.getElementsByClassName(containerId)[0];
+    let movie_image_element = document.createElement("li");
     
     movie_image_element.innerHTML = "<p><img src=" +  data.results[indice].image_url + "</p>";
     movie_image_element.setAttribute("data-id", data.results[indice].id);
     movie_image_element.setAttribute("class", "imgPreview");
+    
     caroussel__container.appendChild(movie_image_element);
     
     movie_image_element.addEventListener("click", function() {
@@ -170,103 +171,6 @@ function createCarousselSection(endUrl1, endUrl2, containerId) {
 }
 
 
-
-
-// function createCarousselSection(endUrl1, endUrl2, sectionPrimary, sectionSecondary) {
-  
-//   // Création des sections d'images
-//   let section1 = document.getElementById(sectionPrimary);
-//   let section2 = document.getElementById(sectionSecondary);
-
-//   let leftArrow1 = document.createElement("div");
-//   leftArrow1.setAttribute("class", "arrow__Left");
-//   leftArrow1.innerHTML = "<a href=#" + sectionSecondary + ">" + "<" + "</a>";
-
-//   let rightArrow1 = document.createElement("div");
-//   rightArrow1.setAttribute("class", "arrow__Right");
-//   rightArrow1.innerHTML = "<a href=#" + sectionSecondary + ">" + ">" + "</a>";
-
-
-//   section1.appendChild(leftArrow1);
-//   for (let movie = 0; movie < 4; movie++) {
-//     showPreview(endUrl1, movie, sectionPrimary)
-//   }
-//   section1.appendChild(rightArrow1);
-
-
-//   let leftArrow2 = document.createElement("div");
-//   leftArrow2.setAttribute("class", "arrow__Left");
-//   leftArrow2.innerHTML = "<a href=#" + sectionPrimary + ">" + "<" + "</a>";
-
-//   let rightArrow2 = document.createElement("div");
-//   rightArrow2.setAttribute("class", "arrow__Right");
-//   rightArrow2.innerHTML = "<a href=#" + sectionPrimary + ">" + ">" + "</a>";
-
-
-//   section2.appendChild(leftArrow2);
-//   for (let movie = 4; movie < 5; movie++) {
-//     showPreview(endUrl1, movie, sectionSecondary)
-//   }
-
-//   for (let movie = 0; movie < 2; movie++) {
-//     showPreview(endUrl2, movie, sectionSecondary)
-//   }
-//   section2.appendChild(rightArrow2)
-
-// }
-
-
-
-
-
-class Caroussel {
-
-  /**
-   * 
-   * @param {*} element 
-   * @param {*} options 
-   * @param {Object} options.slidesToScroll: Nombre d'élements à faire défiler 
-   * @param {Object} options.slidesVisible: Nombre d'élements visible
-   * @param {*} options 
-   */
-
-  constructor (element, options = {}) {
-    this.element = element
-    this.options = Object.assign({}, {  //aller voir la doc sur Object.assign
-      slidesToScroll : 1,
-      slidesVisible : 1
-    }, options)
-
-    this.children = [].slice.call(element.children) //aller voir la doc sur slice et call
-    let root = this.createDivWithClass("caroussel")
-    let container = this.createDivWithClass("caroussel__container") // enlever caroussel__container -- faire une boucle pour créer la preview ici
-    root.appendChild(container)
-    this.element.appendChild(root)
-    this.children.forEach(function (child) {
-      container.appendChild(child)
-    })
-
-    // this.children.forEach((child) => { // aller voir la doc de forEach
-    //   let item = this.createDivWithClass("imgPreview") //class imgPreview
-    //   item.appendChild(child)
-    //   container.appendChild(item)
-    // })
-
-  }
-
-  /**
-   * 
-   * @param {string} className
-   * @returns {HTMLElement}
-   */
-  createDivWithClass (className) {
-    let div = document.createElement("div")
-    div.setAttribute("class", className)
-    return div
-  }
-}
-
-
   function main() {
 
     // Bloc meilleur film.
@@ -282,81 +186,32 @@ class Caroussel {
     });
 
 
-    
-
-    new Caroussel(document.querySelector("#caroussel__test"), {
-      slidesToScroll : 3,
-      slidesVisible : 3
-    
-    })
-
   // 1er caroussel (meilleur films)
-  createCarousselSection("?sort_by=-imdb_score", "?sort_by=-imdb_score&page=2", "caroussel__test")
+  createCarousselSection("?sort_by=-imdb_score", "?sort_by=-imdb_score&page=2", "images")
 
- 
-  }
-
-
-
-
-  // createCarousselSection("bestMovies", "bestMovies__section1", "bestMovies__section2");
-  // for (let movie = 0; movie < 5; movie++) {
-    
-  //   showPreviewInCaroussel("?sort_by=-imdb_score", movie, "bestMovies__section1")
+  // const carrousel = document.getElementsByClassName("images")[0].children;
+  // console.log(carrousel)
+  // for (let i = 0; i < carrousel.length; i++) {
+  //   console.log(i)
+  //   console.log(carrousel[i])
+  //   carrousel.children[i].setAttribute("data-carousselPlace", [i])
   // }
-  // createImagesSection("bestMovies", "bestMovies__section2", "bestMovies__section1");
-  // for (let movie = 0; movie < 2; movie++) {
-  //   showPreviewInCaroussel("?sort_by=-imdb_score&page=2", movie, "bestMovies__section2")
+
+  const carrousel = document.getElementsByClassName("images")[0].childNodes;
+  carrousel.forEach(function (currentValue, currentIndex) {
+    currentValue.setAttribute("data-carousselPlace", currentIndex)
     
-  // }
+  })
+}
+
 
   // // 2d caroussel (meilleur films d'action)
-  // for (let movie = 0; movie < 5; movie++) {
-  //   showPreviewInCaroussel("?genre_contains=drama", movie, "bestMovies__action")
-  // }
-  // for (let movie = 0; movie < 2; movie++) {
-  //   showPreviewInCaroussel("??genre_contains=drama&page=2", movie, "bestMovies__action")
-  // }
-
+ 
   // // 3eme caroussel (meilleur films thriller)
-  // for (let movie = 0; movie < 5; movie++) {
-  //   showPreviewInCaroussel("?genre_contains=thriller", movie, "bestMovies__thriller")
-  // }
-  // for (let movie = 0; movie < 2; movie++) {
-  //   showPreviewInCaroussel("?genre_contains=thriller&page=2", movie, "bestMovies__thriller")
-  // }
 
   // // 4eme caroussel (meilleur films d'horreur)
-  // for (let movie = 0; movie < 5; movie++) {
-  //   showPreviewInCaroussel("?genre_contains=horror", movie, "bestMovies__horror")
-  // }
-  // for (let movie = 0; movie < 2; movie++) {
-  //   showPreviewInCaroussel("??genre_contains=horror&page=2", movie, "bestMovies__horror")
   // }
 
-//   let imagePreviews = document.getElementsByClassName("imgPreview");
-//   for (let img of imagePreviews) {
-//     console.log(img);
-//     img.addEventListener("click", function() {
-//       createModal(img.dataset.id)
-//     })
-//   } 
-// }
-
-
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {  //aller voir la doc sur DOMCcontentLoaded
-//   new Caroussel(document.querySelector("#caroussel__test"), {
-//     slidesToScroll : 3,
-//     slidesVisible : 3
-  
-//   })
-  
-// })
-
-
-
-
+ 
+ 
 main()

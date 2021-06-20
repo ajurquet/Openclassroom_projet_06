@@ -113,10 +113,13 @@ li {
   transform: scale(1.2);
 }
 
-/**
-Caroussel
-*/
-.caroussel__test {
+#caroussel__test {
   display: flex;
+  justify-content: space-around;
+}
+
+.images {
+  display: flex;
+  justify-content: space-around;
 }
 /*# sourceMappingURL=style.css.map */
