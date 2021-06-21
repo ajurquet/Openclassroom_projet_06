@@ -164,7 +164,7 @@ function createCarousselSection(endUrl1, endUrl2, containerId) {
       showPreview(endUrl1, movie, containerId)
     }
   
-    for (let movie = 0; movie < 2; movie++) {
+    for (let movie = 0; movie < 2; movie++) {git 
       showPreview(endUrl2, movie, containerId)
     }
 
@@ -187,7 +187,7 @@ function createCarousselSection(endUrl1, endUrl2, containerId) {
 
 
   // 1er caroussel (meilleur films)
-  createCarousselSection("?sort_by=-imdb_score", "?sort_by=-imdb_score&page=2", "images")
+  createCarousselSection("?sort_by=-imdb_score&page_size=7 ", "?sort_by=-imdb_score&page=2", "images")
 
   // const carrousel = document.getElementsByClassName("images")[0].children;
   // console.log(carrousel)
@@ -197,7 +197,7 @@ function createCarousselSection(endUrl1, endUrl2, containerId) {
   //   carrousel.children[i].setAttribute("data-carousselPlace", [i])
   // }
 
-  const carrousel = document.getElementsByClassName("images")[0].childNodes;
+  let carrousel = document.getElementsByClassName("images")[0].childNodes;
   carrousel.forEach(function (currentValue, currentIndex) {
     currentValue.setAttribute("data-carousselPlace", currentIndex)
     
