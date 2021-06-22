@@ -1,0 +1,19 @@
+{
+  "name": "openclassrooms_projet_06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "sass" : "sass --watch style.scss:.css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajurquet/Openclassroom_projet_06.git"
+  },
+  "author": "Alexandre JURQUET",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajurquet/Openclassroom_projet_06/issues"
+  },
+  "homepage": "https://github.com/ajurquet/Openclassroom_projet_06#readme"
+}

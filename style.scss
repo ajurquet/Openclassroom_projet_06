@@ -1,21 +1,21 @@
 $background-box-color: rgb(240, 128, 128);
 $text-color : rgb(31, 77, 77);
-
+$button-color : rgba(31, 77, 77);
+$background-color : rgba(240, 128, 128, 0.7);
+$font : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 body {
 
-    background: rgba(240, 128, 128, 0.7);
-}
-
-.btn {
-    border-radius: 10px;
-    color: $text-color;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: $background-color;
 }
 
 h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: $font;
     color: $text-color;
+}
+
+h2 {
+    font-weight: bold;
 }
 
 em {
@@ -33,7 +33,7 @@ em {
     margin-bottom: 15px;
     
     &__title {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: $font;
         margin-left: 10px;
         
     }
@@ -43,17 +43,21 @@ em {
         justify-content: space-between;
        
     }
+
+    &__category {
+        margin-right: 15px;
+        font-family: $font;  
+
+    }
 }
 
 li {
-    margin-right: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
     list-style-type: none;  
 }
 
 #bestMovieBlock {
     background-color: $background-box-color;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    font-family: $font;  
     border-radius: 10px;
     color: $text-color;
     height:  15%;
@@ -64,53 +68,6 @@ li {
     margin: auto;
 
 }
-// .caroussel {
-//     display: flex;
-//     justify-content: space-around;
-//     flex-direction: row;
-// }
-
-// #caroussels {
-//     display: flex;
-//     flex-wrap: wrap;
-
-// }
-
-.bestMovies {
-    display: flex;
-    justify-content: space-around;
-
-    &__section1 {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__section2 {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__action {
-        display: flex;
-        justify-content: space-around;
-    }
-
-
-
-    &__thriller {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    &__horror {
-        display: flex;
-        justify-content: space-around;
-    }
-
-
-}
-
-
 
 .modal {
   display: none;
@@ -123,14 +80,9 @@ li {
   width: 100%; 
   height: 100%;
   overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-
-    &__image {
-        align-items: center;
-    }
 
     &__content {
+    font-family: $font;
     background-color: $background-box-color;
     color: $text-color;
     margin: 15% auto; 
@@ -138,13 +90,12 @@ li {
     border-radius: 10px;
     width: 50%; 
     }
+    
     &__list {
         list-style-type: none;
         text-align: justify;
-    }
+    }  
 }
-
-
 
 .close {
   color: $text-color;
@@ -160,31 +111,78 @@ li {
   cursor: pointer;
 }
 
-.arrow {
-    width: 100px;
-    height: 100px;
-    transition: .5s;
-    float: left;
-    box-shadow : -2px 2px 0 rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    
-    &__left {
-        transform: rotate(45deg);
+.imgPreview {
+    &:hover {
+        transform:scale(1.1);
+        transition: 0.1s;
+        
     }
-        &:hover {
-            box-shadow: -2px, 2px, 0 rgb(255, 0, 0);
-        }
-    
-    &__right {
-        transform: rotate(225deg);
-        }
-        &:hover {
-            box-shadow: -2px, 2px, 0 rgb(255, 0, 0);
-        }
 }
 
-.imagePreview {
-    &:hover {
-        transform:scale(1.2);
+// .caroussel {
+//     display: flex;
+//     justify-content: space-around;
+
+// }
+
+.images {
+    &__BM {
+        display: flex;
+    }
+    &__AM {
+        display: flex;
+    }
+    &__T {
+        display: flex;
+    }
+    &__H {
+        display: flex;
+    }
+}
+
+.btn {
+    border-radius: 10px;
+    background-color: $button-color;
+    font-family: $font;
+    color: #fff;
+    height: 30px;
+}
+
+#caroussel {
+    &__BM {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__AM {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__T {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__H {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.arrow {
+    &__left {
+        margin-top: 140px;
+    }
+
+    &__right {
+        margin-top: 140px;
+    }
+}
+
+#gallery {
+    &__BM {
+        display: flex;
+        justify-content: space-around;
     }
 }
