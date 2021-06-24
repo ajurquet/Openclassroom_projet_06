@@ -123,6 +123,7 @@ function showPreviewBestMovie(url) {
     })
   };
   
+
 // Création d'une image preview pour le caroussel.
 function showPreview(endUrl, indice, containerId) {
 fetch(mainEntryUrl + endUrl)
@@ -132,7 +133,6 @@ fetch(mainEntryUrl + endUrl)
     }
   })
   .then(function(data) {   
-    // let movie_cat = document.getElementsByClassName(category)[0];    
     let caroussel__container = document.getElementsByClassName(containerId)[0];
     let movie_image_element = document.createElement("li");
     
@@ -165,7 +165,6 @@ fetch(mainEntryUrl + endUrl)
 function createCarousselSection(endUrl1, endUrl2, containerId) {
   
     // Création des sections d'images
-    
     for (let movie = 0; movie < 5; movie++) {
       showPreview(endUrl1, movie, containerId)
     }
@@ -194,7 +193,7 @@ function turn_right(arrow_right){
 	let figures = divParent.getElementsByClassName('imgPreview')
 	for(var i = 0; i < figures.length; i++){
 		// figures[i].dataset['carousselplace'] = 7 - figures[i].dataset['carousselplace'] - 1
-		figures[i].dataset['carousselplace'] = (figures[i].dataset['carousselplace'] + 6 )%7
+		figures[i].dataset['carousselplace'] = (figures[i].dataset['carousselplace'] + 6 ) % 7
 	}
 	refreshCarrousel(divCarrousel)
 }
@@ -205,7 +204,7 @@ function turn_left(arrow_left){
 	let divCarrousel = divParent.getElementsByTagName('div')[0]
 	let figures = divParent.getElementsByClassName('imgPreview')
 	for(var i = 0; i < figures.length; i++){
-		figures[i].dataset['carousselplace'] = (figures[i].dataset['carousselplace'] + 1)%7
+		figures[i].dataset['carousselplace'] = (figures[i].dataset['carousselplace'] + 1) % 7
 	}
 	refreshCarrousel(divCarrousel)
 }
@@ -235,7 +234,6 @@ function refreshCarrousel(carrousel){
       showPreviewBestMovie(bestMovieUrl);
     });
 
-
   // 1er caroussel (meilleur films)
   createCarousselSection("?sort_by=-imdb_score&page_size=7 ", "?sort_by=-imdb_score&page=2", "images__BM")
 
@@ -247,9 +245,7 @@ function refreshCarrousel(carrousel){
 
   // 4eme caroussel (meilleur films d'horreur)
   createCarousselSection("?genre_contains=horror&sort_by=-imdb_score", "?genre_contains=horro&sort_by=-imdb_score&page=2", "images__H")
-
 }
 
 
- 
 main()
